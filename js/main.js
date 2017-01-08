@@ -73,6 +73,24 @@ $(function () {
             exportHTML()
         } else alert("Invalid row input"); else alert("Invalid column input")
     });
+    $("#addRow").on("click",function (e) {
+        cols = parseInt($("#cols").val(), 10);
+        rows = parseInt($("#rows").val(), 10);
+        $("tbody").append("<tr></tr>")
+        for(var e = 1; e <= cols; e++){
+            $("tbody>tr:last").append("<td class='c" + (e - 1) + " r" + rows + "' colspan='1' rowspan='1'><div contenteditable='true'>&nbsp;</div></td>");
+        }
+        $("#rows").val(rows+1);
+    });
+    $("#addCol").on("click",function (e) {
+        cols = parseInt($("#cols").val(), 10);
+        rows = parseInt($("#rows").val(), 10);
+        $("thead>tr").append("<th class='c"+cols+"'><div contenteditable='true'>&nbsp;</div></th>");
+        $("tbody>tr").each(function (i) {
+            $(this).append("<td class='c" + cols + " r" + i + "' colspan='1' rowspan='1'><div contenteditable='true'>&nbsp;</div></td>");
+        })
+        $("#cols").val(cols+1);
+    });
     $("#generate").trigger("click")
 });
 function selectCells(a, e) {
