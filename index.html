@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="content-language" content="zh">
+    <title>表格生成器</title>
+    <style type="text/css">
+        table, td {
+            border: solid 1px black;
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+
+        td {
+            padding: 8px;
+        }
+
+        .s {
+            background: #d0eaf9;
+        }
+
+        #rows, #cols {
+            width: 20px;
+        }
+
+        td div {
+            outline: none;
+        }
+
+        #tableWrap {
+            padding: 10px;
+        }
+
+        input[type="button"] {
+            width: 110px;
+        }
+        i.annotation{
+            color: gray;
+            font-size: 10px;
+        }
+    </style>
+    <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script src="./js/main.js" type="text/javascript"></script>
+</head>
+<body>
+<div>
+    <h1>表格生成器 v1.0</h1>
+    <p>功能介绍:</p>
+    <ul>
+        <li>自定义列数和行数</li>
+        <li>可合并单元格</li>
+        <li>可填写数据</li>
+    </ul>
+
+    <input type="button" id="generate" value="生成">
+    行:<input id="rows" type="text" value="5" maxlength="2">
+    列:<input id="cols" type="text" value="10" maxlength="2">
+    <br>
+    <input type="button" id="merge" value="合并单元格"> <i class="annotation">说明：选中几个单元格后，点此按钮可进行合并</i>
+
+</div>
+
+<hr>
+
+<div>
+    <div id="tableWrap"></div>
+    <hr>
+
+    <label><input type="checkbox" id="bsEnter"/>清除回车与空格</label>
+    <hr>
+
+    <textarea cols="60" rows="30" id="export"></textarea>
+    <hr>
+
+    <p>待更新功能：</p>
+    <ul>
+        <li>优化界面（原谅现在这么丑的界面）</li>
+        <li>添加表头可选项（thead、th）</li>
+        <li>删除/添加单列/单行</li>
+    </ul>
+
+</div>
+
+<p>声明：代码已在github上开源：<a href="https://github.com/yelog/TableGenerator" target="_blank">Yelog</a>；联系作者发邮件至邮箱：yelogeek@gmail.com</p>
+
+</body>
+</html>
