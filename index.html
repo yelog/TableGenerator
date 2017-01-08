@@ -5,8 +5,12 @@
     <meta http-equiv="content-language" content="zh">
     <title>表格生成器</title>
     <style type="text/css">
-        table, td {
+        table, td ,th{
             border: solid 1px black;
+        }
+        table>thead>tr>th{
+            font-weight: bolder;
+            background: #dedede;
         }
 
         table {
@@ -14,7 +18,7 @@
             border-spacing: 0;
         }
 
-        td {
+        td, th{
             padding: 8px;
         }
 
@@ -26,7 +30,7 @@
             width: 20px;
         }
 
-        td div {
+        td div,th div {
             outline: none;
         }
 

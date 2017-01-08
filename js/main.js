@@ -26,15 +26,17 @@ function getCellValue(a, e) {
 }
 function exportHTML() {
     var enter = $("#bsEnter").prop("checked")==true?"":"\n";
-    var bs = $("#bsEnter").prop("checked")==true?"":"    "
+    var bs = $("#bsEnter").prop("checked")==true?"":"    ";
+    var h = $("thead").clone() , h = h.html(), h = h.toLowerCase(), h = h.replace(/rowspan="1"/gi, ""), h = h.replace(/colspan="1"/gi, ""), h = h.replace(/class="([^"]*)"/gi, ""),h = h.replace(/class="([^"]*)"/gi, ""), h = h.replace(/<div contenteditable="true">/gi, ""), h = h.replace(/<div contenteditable=true>/gi, ""), h = h.replace(/&nbsp;/gi, ""), h = h.replace(/<\/div>/gi, ""), h = h.replace(/\s\s\s/gi, " "), h = h.replace(/\s\s/gi, " "), h = h.replace(/<th\s>/gi, "<th>"), h = h.replace(/<tr>\s<th/gi, "<tr><th"); h = h.replace(/> <\/th>/gi,
+        "></th>"), h = h.replace(/<\/th>\s</gi, "</th><"), h = h.replace(/<tr>/gi, enter+bs+bs+"<tr>"+enter+bs), h = h.replace(/<\/tr>/gi, enter+bs+bs+"</tr>"), h = h.replace(/h><th/gi, "h>"+enter+bs+"<th"), h = h.replace(/<th/gi, bs+bs+"<th"), h = h.replace(/<th>\s/gi, "<th>"), h = h.replace(/\s>\s/gi, ">"), h = h.replace(/" >/gi, '">');
     var a = $("tbody").clone(), a = a.html(), a = a.toLowerCase(), a = a.replace(/rowspan="1"/gi, ""), a = a.replace(/colspan="1"/gi, ""), a = a.replace(/class="([^"]*)"/gi, ""), a = a.replace(/class="([^"]*)"/gi, ""), a = a.replace(/<div contenteditable="true">/gi, ""), a = a.replace(/<div contenteditable=true>/gi, ""), a = a.replace(/&nbsp;/gi, ""), a = a.replace(/<\/div>/gi, ""), a = a.replace(/\s\s\s/gi, " "), a = a.replace(/\s\s/gi, " "), a = a.replace(/<td\s>/gi, "<td>"), a = a.replace(/<tr>\s<td/gi, "<tr><td"), a = a.replace(/> <\/td>/gi,
-        "></td>"), a = a.replace(/<\/td>\s</gi, "</td><"), a = a.replace(/<tr>/gi, enter+bs+"<tr>"+enter), a = a.replace(/<\/tr>/gi, enter+bs+"</tr>"), a = a.replace(/d><td/gi, "d>"+enter+"<td"), a = a.replace(/<td/gi, bs+bs+"<td"), a = a.replace(/<td>\s/gi, "<td>"), a = a.replace(/\s>\s/gi, ">"), a = a.replace(/" >/gi, '">');
-    $("#export").val("<table>" + a + enter+"</table>")
+        "></td>"), a = a.replace(/<\/td>\s</gi, "</td><"), a = a.replace(/<tr>/gi, enter+bs+bs+"<tr>"+enter+bs), a = a.replace(/<\/tr>/gi, enter+bs+bs+"</tr>"), a = a.replace(/d><td/gi, "d>"+enter+bs+"<td"), a = a.replace(/<td/gi, bs+bs+"<td"), a = a.replace(/<td>\s/gi, "<td>"), a = a.replace(/\s>\s/gi, ">"), a = a.replace(/" >/gi, '">');
+    $("#export").val("<table>"+enter+bs+"<thead>"+h+enter+bs+"</thead>"+enter+bs+"<tbody>" + a + enter+bs+"</tbody>"+enter+"</table>")
 }
 function reindexTable() {
     for (var a = [], e = [], b = 0; b < cols; b++)a[b] = "c" + b;
     for (b = 0; b < rows; b++)e[b] = a.slice();
-    for (var a = $("tr"), c, g, f, i, b = 0; b < rows; b++) {
+    for (var a = $("tr","tbody"), c, g, f, i, b = 0; b < rows; b++) {
         c = a.eq(b).children();
         g = c.size();
         for (var j = colOffset = 0; j < g; j++) {
@@ -58,11 +60,15 @@ $(function () {
         cols = parseInt($("#cols").val(), 10);
         rows = parseInt($("#rows").val(), 10);
         if (isInt(cols))if (isInt(rows)) {
-            $("#tableWrap").empty().append("<table>");
+            $("#tableWrap").empty().append("<table><thead><tr></tr></thead><tbody></tbody></table>");
+            var $tableHead = $("tr","thead");
+            for (var a = 1; a <= cols; a++){
+                $tableHead.append("<th class='c"+(a-1)+"'><div contenteditable='true'>&nbsp;</div></th>");
+            }
             for (var a = 1; a <= rows; a++) {
-                $("table").append("<tr></tr>");
-                $generatedRow = $("tr").eq(a - 1);
-                for (var e = 1; e <= cols; e++)$generatedRow.append("<td class='c" + (e - 1) + " r" + (a - 1) + "' colspan='1' rowspan='1'><div contenteditable='true'>&nbsp;</div>")
+                $("tbody").append("<tr></tr>");
+                $generatedRow = $("tr","tbody").eq(a - 1);
+                for (var e = 1; e <= cols; e++)$generatedRow.append("<td class='c" + (e - 1) + " r" + (a - 1) + "' colspan='1' rowspan='1'><div contenteditable='true'>&nbsp;</div></td>")
             }
             exportHTML()
         } else alert("Invalid row input"); else alert("Invalid column input")
