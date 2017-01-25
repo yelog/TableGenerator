@@ -106,6 +106,14 @@ $(function () {
                 var n = parseInt($(this).attr("rowspan"), 10);
                 if (n + index == $("tbody>tr").length) {
                     $(this).attr("rowspan",n - 1);
+                    var classes = $(this).attr("class").split(" ");
+                    var maxRow = 0;
+                    for (var i = 0 ; i<classes.length; i++){
+                        if(classes[i].substring(0,1)=="r" && parseInt(classes[i].substring(1)) > parseInt(maxRow)){
+                            maxRow = classes[i].substring(1);
+                        }
+                    }
+                    $(this).removeClass("r"+maxRow);
                 }
             })
         });
@@ -113,14 +121,31 @@ $(function () {
         $("#rows").val(parseInt($("#rows").val(), 10) - 1);
     });
     $("#delCol").on("click", function (e) {
+        var nextStatus = 0;
         $("tbody>tr").each(function () {
+            if(nextStatus>0){
+                nextStatus--;
+                return true;
+            }
             var status = 0;
             $(this).find("td").each(function () {
                 if($(this).attr("class").split(" ").length>2){
                     var n = parseInt($(this).attr("colspan"), 10);
-                    if (n + parseInt($(this).attr("class").split(" ")[0].substr(1,1), 10) == $("thead>tr>th").length) {
+                    if (n + parseInt($(this).attr("class").split(" ")[0].substr(1), 10) == $("thead>tr>th").length) {
                         $(this).attr("colspan",n - 1);
                         status = 1;
+                        var classes = $(this).attr("class").split(" ");
+                        var maxCol = 0;
+                        for (var i = 0 ; i<classes.length; i++){
+                            if(classes[i].substring(0,1)=="c" && parseInt(classes[i].substring(1)) > parseInt(maxCol)){
+                                maxCol = classes[i].substring(1);
+                            }
+                            if(classes[i].substring(0,1)=="r"){
+                                nextStatus++;
+                            }
+                        }
+                        $(this).removeClass("c"+maxCol);
+                        nextStatus--;
                         return false;
                     }
                 }
