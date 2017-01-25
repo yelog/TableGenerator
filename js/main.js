@@ -25,25 +25,26 @@ function getCellValue(a, e) {
     return b
 }
 function exportHTML() {
-    var enter = $("#bsEnter").prop("checked")==true?"":"\n";
-    var bs = $("#bsEnter").prop("checked")==true?"":"    ";
+    var enter = $("#bsEnter").prop("checked") == true ? "" : "\n";
+    var bs = $("#bsEnter").prop("checked") == true ? "" : "    ";
     var clearTh = $("#clearTh").prop("checked");
-    if(clearTh){
+    if (clearTh) {
         var a = $("tbody").clone(), a = a.html(), a = a.toLowerCase(), a = a.replace(/rowspan="1"/gi, ""), a = a.replace(/colspan="1"/gi, ""), a = a.replace(/class="([^"]*)"/gi, ""), a = a.replace(/class="([^"]*)"/gi, ""), a = a.replace(/<div contenteditable="true">/gi, ""), a = a.replace(/<div contenteditable=true>/gi, ""), a = a.replace(/&nbsp;/gi, ""), a = a.replace(/<\/div>/gi, ""), a = a.replace(/\s\s\s/gi, " "), a = a.replace(/\s\s/gi, " "), a = a.replace(/<td\s>/gi, "<td>"), a = a.replace(/<tr>\s<td/gi, "<tr><td"), a = a.replace(/> <\/td>/gi,
-            "></td>"), a = a.replace(/<\/td>\s</gi, "</td><"), a = a.replace(/<tr>/gi, enter+bs+"<tr>"+enter), a = a.replace(/<\/tr>/gi, enter+bs+"</tr>"), a = a.replace(/d><td/gi, "d>"+enter+"<td"), a = a.replace(/<td/gi, bs+bs+"<td"), a = a.replace(/<td>\s/gi, "<td>"), a = a.replace(/\s>\s/gi, ">"), a = a.replace(/" >/gi, '">');
-        $("#export").val("<table>" + a + enter+"</table>")
-    }else{
-        var h = $("thead").clone() , h = h.html(), h = h.toLowerCase(), h = h.replace(/rowspan="1"/gi, ""), h = h.replace(/colspan="1"/gi, ""), h = h.replace(/class="([^"]*)"/gi, ""),h = h.replace(/class="([^"]*)"/gi, ""), h = h.replace(/<div contenteditable="true">/gi, ""), h = h.replace(/<div contenteditable=true>/gi, ""), h = h.replace(/&nbsp;/gi, ""), h = h.replace(/<\/div>/gi, ""), h = h.replace(/\s\s\s/gi, " "), h = h.replace(/\s\s/gi, " "), h = h.replace(/<th\s>/gi, "<th>"), h = h.replace(/<tr>\s<th/gi, "<tr><th"); h = h.replace(/> <\/th>/gi,
-            "></th>"), h = h.replace(/<\/th>\s</gi, "</th><"), h = h.replace(/<tr>/gi, enter+bs+bs+"<tr>"+enter+bs), h = h.replace(/<\/tr>/gi, enter+bs+bs+"</tr>"), h = h.replace(/h><th/gi, "h>"+enter+bs+"<th"), h = h.replace(/<th/gi, bs+bs+"<th"), h = h.replace(/<th>\s/gi, "<th>"), h = h.replace(/\s>\s/gi, ">"), h = h.replace(/" >/gi, '">');
+            "></td>"), a = a.replace(/<\/td>\s</gi, "</td><"), a = a.replace(/<tr>/gi, enter + bs + "<tr>" + enter), a = a.replace(/<\/tr>/gi, enter + bs + "</tr>"), a = a.replace(/d><td/gi, "d>" + enter + "<td"), a = a.replace(/<td/gi, bs + bs + "<td"), a = a.replace(/<td>\s/gi, "<td>"), a = a.replace(/\s>\s/gi, ">"), a = a.replace(/" >/gi, '">');
+        $("#export").val("<table>" + a + enter + "</table>")
+    } else {
+        var h = $("thead").clone(), h = h.html(), h = h.toLowerCase(), h = h.replace(/rowspan="1"/gi, ""), h = h.replace(/colspan="1"/gi, ""), h = h.replace(/class="([^"]*)"/gi, ""), h = h.replace(/class="([^"]*)"/gi, ""), h = h.replace(/<div contenteditable="true">/gi, ""), h = h.replace(/<div contenteditable=true>/gi, ""), h = h.replace(/&nbsp;/gi, ""), h = h.replace(/<\/div>/gi, ""), h = h.replace(/\s\s\s/gi, " "), h = h.replace(/\s\s/gi, " "), h = h.replace(/<th\s>/gi, "<th>"), h = h.replace(/<tr>\s<th/gi, "<tr><th");
+        h = h.replace(/> <\/th>/gi,
+            "></th>"), h = h.replace(/<\/th>\s</gi, "</th><"), h = h.replace(/<tr>/gi, enter + bs + bs + "<tr>" + enter + bs), h = h.replace(/<\/tr>/gi, enter + bs + bs + "</tr>"), h = h.replace(/h><th/gi, "h>" + enter + bs + "<th"), h = h.replace(/<th/gi, bs + bs + "<th"), h = h.replace(/<th>\s/gi, "<th>"), h = h.replace(/\s>\s/gi, ">"), h = h.replace(/" >/gi, '">');
         var a = $("tbody").clone(), a = a.html(), a = a.toLowerCase(), a = a.replace(/rowspan="1"/gi, ""), a = a.replace(/colspan="1"/gi, ""), a = a.replace(/class="([^"]*)"/gi, ""), a = a.replace(/class="([^"]*)"/gi, ""), a = a.replace(/<div contenteditable="true">/gi, ""), a = a.replace(/<div contenteditable=true>/gi, ""), a = a.replace(/&nbsp;/gi, ""), a = a.replace(/<\/div>/gi, ""), a = a.replace(/\s\s\s/gi, " "), a = a.replace(/\s\s/gi, " "), a = a.replace(/<td\s>/gi, "<td>"), a = a.replace(/<tr>\s<td/gi, "<tr><td"), a = a.replace(/> <\/td>/gi,
-            "></td>"), a = a.replace(/<\/td>\s</gi, "</td><"), a = a.replace(/<tr>/gi, enter+bs+bs+"<tr>"+enter+bs), a = a.replace(/<\/tr>/gi, enter+bs+bs+"</tr>"), a = a.replace(/d><td/gi, "d>"+enter+bs+"<td"), a = a.replace(/<td/gi, bs+bs+"<td"), a = a.replace(/<td>\s/gi, "<td>"), a = a.replace(/\s>\s/gi, ">"), a = a.replace(/" >/gi, '">');
-        $("#export").val("<table>"+enter+bs+"<thead>"+h+enter+bs+"</thead>"+enter+bs+"<tbody>" + a + enter+bs+"</tbody>"+enter+"</table>")
+            "></td>"), a = a.replace(/<\/td>\s</gi, "</td><"), a = a.replace(/<tr>/gi, enter + bs + bs + "<tr>" + enter + bs), a = a.replace(/<\/tr>/gi, enter + bs + bs + "</tr>"), a = a.replace(/d><td/gi, "d>" + enter + bs + "<td"), a = a.replace(/<td/gi, bs + bs + "<td"), a = a.replace(/<td>\s/gi, "<td>"), a = a.replace(/\s>\s/gi, ">"), a = a.replace(/" >/gi, '">');
+        $("#export").val("<table>" + enter + bs + "<thead>" + h + enter + bs + "</thead>" + enter + bs + "<tbody>" + a + enter + bs + "</tbody>" + enter + "</table>")
     }
 }
 function reindexTable() {
     for (var a = [], e = [], b = 0; b < cols; b++)a[b] = "c" + b;
     for (b = 0; b < rows; b++)e[b] = a.slice();
-    for (var a = $("tr","tbody"), c, g, f, i, b = 0; b < rows; b++) {
+    for (var a = $("tr", "tbody"), c, g, f, i, b = 0; b < rows; b++) {
         c = a.eq(b).children();
         g = c.size();
         for (var j = colOffset = 0; j < g; j++) {
@@ -66,38 +67,70 @@ $(function () {
     $("#generate").on("click", function () {
         cols = parseInt($("#cols").val(), 10);
         rows = parseInt($("#rows").val(), 10);
-        var clearTh = $("#clearTh").prop("checked")==true?"none":"";
+        var clearTh = $("#clearTh").prop("checked") == true ? "none" : "";
         if (isInt(cols))if (isInt(rows)) {
-            $("#tableWrap").empty().append("<table><thead style='display: "+clearTh+"'><tr></tr></thead><tbody></tbody></table>");
-            var $tableHead = $("tr","thead");
-            for (var a = 1; a <= cols; a++){
-                $tableHead.append("<th class='c"+(a-1)+"'><div contenteditable='true'>&nbsp;</div></th>");
+            $("#tableWrap").empty().append("<table><thead style='display: " + clearTh + "'><tr></tr></thead><tbody></tbody></table>");
+            var $tableHead = $("tr", "thead");
+            for (var a = 1; a <= cols; a++) {
+                $tableHead.append("<th class='c" + (a - 1) + "'><div contenteditable='true'>&nbsp;</div></th>");
             }
             for (var a = 1; a <= rows; a++) {
                 $("tbody").append("<tr></tr>");
-                $generatedRow = $("tr","tbody").eq(a - 1);
+                $generatedRow = $("tr", "tbody").eq(a - 1);
                 for (var e = 1; e <= cols; e++)$generatedRow.append("<td class='c" + (e - 1) + " r" + (a - 1) + "' colspan='1' rowspan='1'><div contenteditable='true'>&nbsp;</div></td>")
             }
             exportHTML()
         } else alert("Invalid row input"); else alert("Invalid column input")
     });
-    $("#addRow").on("click",function (e) {
+    $("#addRow").on("click", function (e) {
         cols = parseInt($("#cols").val(), 10);
         rows = parseInt($("#rows").val(), 10);
         $("tbody").append("<tr></tr>")
-        for(var e = 1; e <= cols; e++){
+        for (var e = 1; e <= cols; e++) {
             $("tbody>tr:last").append("<td class='c" + (e - 1) + " r" + rows + "' colspan='1' rowspan='1'><div contenteditable='true'>&nbsp;</div></td>");
         }
-        $("#rows").val(rows+1);
+        $("#rows").val(rows + 1);
     });
-    $("#addCol").on("click",function (e) {
+    $("#addCol").on("click", function (e) {
         cols = parseInt($("#cols").val(), 10);
         rows = parseInt($("#rows").val(), 10);
-        $("thead>tr").append("<th class='c"+cols+"'><div contenteditable='true'>&nbsp;</div></th>");
+        $("thead>tr").append("<th class='c" + cols + "'><div contenteditable='true'>&nbsp;</div></th>");
         $("tbody>tr").each(function (i) {
             $(this).append("<td class='c" + cols + " r" + i + "' colspan='1' rowspan='1'><div contenteditable='true'>&nbsp;</div></td>");
         });
-        $("#cols").val(cols+1);
+        $("#cols").val(cols + 1);
+    });
+    $("#delRow").on("click", function (e) {
+        $("tbody>tr:not(:last)").each(function (index) {
+            $(this).find("td").each(function () {
+                var n = parseInt($(this).attr("rowspan"), 10);
+                if (n + index == $("tbody>tr").length) {
+                    $(this).attr("rowspan",n - 1);
+                }
+            })
+        });
+        $("tbody>tr:last").remove();
+        $("#rows").val(parseInt($("#rows").val(), 10) - 1);
+    });
+    $("#delCol").on("click", function (e) {
+        $("tbody>tr").each(function () {
+            var status = 0;
+            $(this).find("td").each(function () {
+                if($(this).attr("class").split(" ").length>2){
+                    var n = parseInt($(this).attr("colspan"), 10);
+                    if (n + parseInt($(this).attr("class").split(" ")[0].substr(1,1), 10) == $("thead>tr>th").length) {
+                        $(this).attr("colspan",n - 1);
+                        status = 1;
+                        return false;
+                    }
+                }
+            });
+            if(status == 0){
+                $(this).find("td:last").remove();
+            }
+        });
+        $("thead>tr>th:last").remove();
+        $("#cols").val(parseInt($("#cols").val(), 10) - 1);
     });
     $("#generate").trigger("click")
 });
@@ -201,10 +234,10 @@ $(function () {
         exportHTML();
     });
     $("#clearTh").change(function () {
-        if($("#clearTh").prop("checked")){
-            $("thead").css("display","none");
-        }else{
-            $("thead").css("display","");
+        if ($("#clearTh").prop("checked")) {
+            $("thead").css("display", "none");
+        } else {
+            $("thead").css("display", "");
         }
         exportHTML();
     })
