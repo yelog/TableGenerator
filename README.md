@@ -1,7 +1,6 @@
 # TableGenerator
 ## 简介
 
-Demo地址：[](https://yelog.github.io/tableGenerate/)
 一个在线的table的html代码生成器。代码也可以插入到markdown中，来显示复杂格式的表格，如下所示
 <table>
     <tr>
